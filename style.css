@@ -1,0 +1,9 @@
+#name,
+#submit {
+  display: block;
+}
+
+.book-title {
+  margin: 0;
+  padding: 0;
+}
