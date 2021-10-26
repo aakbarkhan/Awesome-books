@@ -1,6 +1,4 @@
 let bookList = [
-    {title:'God must be crazy', 
-    author:'Ali Baba'}
 ];
 
 const books = document.getElementById('books-name');
@@ -9,19 +7,18 @@ const titleValue = document.getElementById('name');
 const authorValue = document.getElementById('author');
 
 function addBooks() {
-    bookList.push({title:titleValue.value, author:authorValue.value});    
+    bookList.push({title:titleValue.value, author:authorValue.value,id:bookList.length});
+    display();    
 }
 
 //  removeBooks(id)
 function removeBooks(id) {
-       const filterbookList = bookList.filter((e) => id !== bookList.length - 1);
+       const filterbookList = bookList.filter((e) => e.id != id);
     bookList = filterbookList;
-    console.log(id)
     display();
 }
 function display() {
    
-    addBooks();
     document.querySelector('#books-name').innerHTML = '';
     bookList.forEach((book) => {
         books.innerHTML += `
@@ -35,4 +32,4 @@ function display() {
 
 }
 
-submitBtn.addEventListener('click', display);
+submitBtn.addEventListener('click',addBooks);
