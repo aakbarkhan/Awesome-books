@@ -1,5 +1,8 @@
-#name,
 #submit {
+  display: block;
+}
+
+label {
   display: block;
 }
 
