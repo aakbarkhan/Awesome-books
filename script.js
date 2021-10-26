@@ -8,17 +8,20 @@ const authorValue = document.getElementById('author');
 
 function addBooks() {
     bookList.push({title:titleValue.value, author:authorValue.value,id:bookList.length});
-    display();    
+    display();
+    const localStore = JSON.stringify(bookList);
+    localStorage.setItem('formcont', localStore);   
 }
 
 //  removeBooks(id)
 function removeBooks(id) {
-       const filterbookList = bookList.filter((e) => e.id != id);
-    bookList = filterbookList;
+    bookList = bookList.filter((e) => e.id != id);
+    console.log(id)
     display();
+    const localStore = JSON.stringify(bookList);
+    localStorage.setItem('formcont', localStore);
 }
 function display() {
-   
     document.querySelector('#books-name').innerHTML = '';
     bookList.forEach((book) => {
         books.innerHTML += `
@@ -29,7 +32,12 @@ function display() {
     });
     titleValue.value = "";
     authorValue.value = "";
-
 }
-
 submitBtn.addEventListener('click',addBooks);
+
+if (localStorage.getItem('formcont') !== null) {
+    let getformcont = window.localStorage.getItem('formcont');
+    bookList = JSON.parse(getformcont);
+    display()
+  }
+
