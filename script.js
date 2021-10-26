@@ -7,10 +7,13 @@ const titleValue = document.getElementById('name');
 const authorValue = document.getElementById('author');
 
 function addBooks() {
-    bookList.push({title:titleValue.value, author:authorValue.value,id:bookList.length});
-    display();
-    const localStore = JSON.stringify(bookList);
-    localStorage.setItem('formcont', localStore);   
+    if(titleValue.value.length > 0 && authorValue.value.length > 0 ) {
+        bookList.push({title:titleValue.value, author:authorValue.value,id:bookList.length});
+        display();
+        addLocalStorage();
+    } else {
+        alert('Fields are Empty!');
+    }
 }
 
 //  removeBooks(id)
@@ -18,8 +21,7 @@ function removeBooks(id) {
     bookList = bookList.filter((e) => e.id != id);
     console.log(id)
     display();
-    const localStore = JSON.stringify(bookList);
-    localStorage.setItem('formcont', localStore);
+    addLocalStorage();
 }
 function display() {
     document.querySelector('#books-name').innerHTML = '';
@@ -27,7 +29,7 @@ function display() {
         books.innerHTML += `
         <h1  class="book-title">Title: ${book.title}</h1>
         <h2 class="book-title">Author: ${book.author}</h2>
-        <button id=${bookList.length-1}  onClick=removeBooks(id) type="submit">Remove</button>
+        <button id=${book.id}  onClick=removeBooks(id) type="submit">Remove</button>
         `;
     });
     titleValue.value = "";
@@ -35,8 +37,13 @@ function display() {
 }
 submitBtn.addEventListener('click',addBooks);
 
+function addLocalStorage() {
+    const localStore = JSON.stringify(bookList);
+    localStorage.setItem('formcont', localStore);
+}
+
 if (localStorage.getItem('formcont') !== null) {
-    let getformcont = window.localStorage.getItem('formcont');
+    let getformcont = localStorage.getItem('formcont');
     bookList = JSON.parse(getformcont);
     display()
   }
