@@ -36,12 +36,10 @@ function display() {
     authorValue.value = "";
 }
 submitBtn.addEventListener('click',addBooks);
-
 function addLocalStorage() {
     const localStore = JSON.stringify(bookList);
     localStorage.setItem('formcont', localStore);
 }
-
 if (localStorage.getItem('formcont') !== null) {
     let getformcont = localStorage.getItem('formcont');
     bookList = JSON.parse(getformcont);
