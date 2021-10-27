@@ -14,7 +14,7 @@ class BookList {
     }
 
 
-    display(bookList) {
+    static display(bookList) {
         document.querySelector('#books-name').innerHTML = '';
        const books = document.getElementById('books-name');
        bookList.forEach((book) => {
@@ -41,7 +41,7 @@ class BookList {
 }
 
 function removeBooks(id) {
-    const index = bookList.findIndex((prop) => prop.id === this.id); 
+    const index = bookList.findIndex((prop) => prop.id === id); 
     bookList.splice(index, 1);
     console.log(bookList);
     addLocalStorage();
@@ -54,7 +54,7 @@ submitBtn.addEventListener('click', (e) => {
     
     const books = new BookList(title, author);
     bookList.push({title:titleValue.value, author:authorValue.value, id:  Math.random().toString(16).slice(2)});
-    books.display(bookList);
+    BookList.display(bookList);
     addLocalStorage();
 })
 document.querySelector('#books-name').addEventListener('click', (e)=> {
@@ -64,9 +64,9 @@ document.querySelector('#books-name').addEventListener('click', (e)=> {
     addLocalStorage();
 })
 window.addEventListener('load', ()=>{
-    const books = new BookList();
-    books.display(bookList);
-})
+    // const books = new BookList();
+    BookList.display(bookList);
+});
 
 function addLocalStorage() {
     const localStore = JSON.stringify(bookList);
@@ -76,7 +76,7 @@ function addLocalStorage() {
 if (localStorage.getItem('bookList') !== null) {
     let getformcont = localStorage.getItem('bookList');
     bookList = JSON.parse(getformcont);
-    display(bookList)
+    BookList.display(bookList)
   }
 
 
