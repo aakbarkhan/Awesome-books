@@ -20,9 +20,11 @@ class BookList {
        bookList.forEach((book) => {
             books.innerHTML += `
             <div class="book-info">
-            <h1  class="book-title">Title: ${book.title}</h1>
-            <h2 class="book-title">Author: ${book.author}</h2>
-            <button id=${book.id} onclick="removeBooks(this.id)"  class="delete" type="submit">Remove</button>
+            <div class="book">
+            <h1  class="book-title"> ${book.title} by </h1>
+            <h2 class="book-title">${" " + book.author}</h2>
+            </div>
+            <button id= ${book.id} onclick="removeBooks(this.id)"  class="delete" type="submit">Remove</button>
             </div>
             `;
        });
@@ -53,7 +55,7 @@ submitBtn.addEventListener('click', (e) => {
     const author = document.getElementById('author').value;
     
     const books = new BookList(title, author);
-    bookList.push({title:titleValue.value, author:authorValue.value, id:  Math.random().toString(16).slice(2)});
+    bookList.unshift({title:titleValue.value, author:authorValue.value, id:  Math.random().toString(16).slice(2)});
     BookList.display(bookList);
     addLocalStorage();
 })

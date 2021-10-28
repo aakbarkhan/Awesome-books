@@ -1,9 +1,44 @@
+body {
+  margin: 0 auto;
+  text-align: center;
+}
+
 #submit {
+  position: relative;
   display: block;
+  margin: 0 auto;
+  left: 83px;
+  padding: 5px;
+  margin-top: 16px;
 }
 
 label {
   display: block;
+}
+
+#name {
+  margin: 10px 0;
+}
+
+hr {
+  width: 50%;
+  height: 10px;
+  background-color: rgb(88, 85, 85);
+}
+
+#books-name {
+  border: 1px solid black;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.book-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.book {
+  display: flex;
 }
 
 .book-title {
